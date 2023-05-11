@@ -1,14 +1,12 @@
 import 'package:game/basic_objects/item.dart';
-import '../basic_objects/character.dart';
+import '../basic_objects/hero.dart';
 
 class Flask extends Item{
-  final int _addHP = 50;
-  final String _name = "Хилка +50хп";
-  late Character character;
+  final int _addHP = 30;
+  final String _name = "Хилка +30хп";
+  late Hero hero;
 
-  Flask (Character char) {
-    character = char;
-  }
+  Flask (this.hero);
 
   int get getPoints {
     return _addHP;
@@ -21,6 +19,6 @@ class Flask extends Item{
 
   @override
   void use() {
-    character.changeHP(_addHP);
+    hero.changeHP(_addHP);
   }
 }

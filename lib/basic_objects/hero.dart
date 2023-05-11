@@ -1,17 +1,18 @@
 import 'package:game/items/flask.dart';
 import 'item.dart';
 
-class Character {
+class Hero {
   late int _level;
   late String _name;
-  late int _hp;
+  final int _maxHP = 100;
+  late int _currentHP;
   late int _damage;
   List<Item> inventory = [];
 
-  Character(String name) {
+  Hero(String name) {
     _level = 1;
     _name = name;
-    _hp = 100;
+    _currentHP = _maxHP;
     inventory = [Flask(this), Flask(this), Flask(this)];
   }
 
@@ -28,12 +29,16 @@ class Character {
   }
 
   int get getHP {
-    return _hp;
+    return _currentHP;
   }
 
   void changeHP(int points) {
-    if (_hp + points > 0) {
-      _hp += points;
+    if (_currentHP + points > 0) {
+      if (_currentHP + points > _maxHP) {
+        _currentHP = _maxHP;
+      } else {
+        _currentHP += points;
+      }
     } else {
       // death
     }
